@@ -109,7 +109,7 @@ function App() {
         ) : (
           <Row className=" mt-5">
             <Col md={8}>
-              <h3>{ans || "Answer for your question" }</h3>
+              <h3>{ans && ans.text ? ans.text : "Answer for your question" }</h3>
             </Col>
           </Row>
         )}
