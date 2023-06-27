@@ -13,7 +13,6 @@ const { Configuration, OpenAIApi } = require("openai");
 let prompt;
 let answer;
 
-console.log(`${process.env.OpenAIApi}`);
 const configuration = new Configuration({
   apiKey: `${process.env.OpenAIApi}`,
 });
@@ -32,10 +31,11 @@ const runPrompt = async () => {
     answer = completion.data.choices[0].text;
   } catch (error) {
     if (error.response) {
-      console.log(error, error.response.status);
-      answer = error.response.data;
+      console.log(error);
+      console.log(error.response.status);
+      answer=(error.response.data);
     } else {
-      answer = error.message;
+      answer=(error.message);
     }
   }
 };
@@ -56,7 +56,7 @@ console.log(frontendBuildPath);
 
 app.use(express.static(frontendBuildPath));
 
-app.get("/", (req, res) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(frontendBuildPath, "index.html"));
 });
 
